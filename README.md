@@ -1,0 +1,4 @@
+一个北京市政信件数据可视化系统
+集群信息需要自定义修改
+LetterJob为mapreduce程序需要自行打包上传到集群
+LetterProject包含了爬取，清洗，上传hdfs，导入hive，导出到mysql中只需修改相关命令参数然后直接运行springboot即可
