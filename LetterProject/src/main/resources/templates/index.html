@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>账号登录</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/html_css_js_1/css/style.css" type="text/css" media="all" />
+    <script src="https://kit.fontawesome.com/af562a2a63.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+</head>
+
+<body>
+
+    <section class="forms">
+        <div class="container">
+            <div class="forms-grid">
+
+                <div class="login">
+                    <div style="color: red" id="msg">
+                    </div>
+                    <span class="fas fa-sign-in-alt"></span>
+                    <strong>北京市政府百姓信件</strong>
+                    <span>登录你的账号</span>
+                    <form action="##" onsubmit="return false" method="post" class="login-form" id="myForm">
+                        <fieldset>
+                            <div class="form">
+                                <div class="form-row">
+                                    <span class="fas fa-user"></span>
+                                    <label class="form-label" for="account" >账号</label>
+                                    <input type="text" class="form-text" required="required" id="account" name="account">
+                                </div>
+                                <div class="form-row">
+                                    <span class="fas fa-eye"></span>
+                                    <label class="form-label" for="pwd">密码</label>
+                                    <input type="password" class="form-text" required="required" id="pwd" name="password">
+                                </div>
+                                <div class="form-row bottom">
+                                    <div class="form-check">
+                                        <input type="checkbox" id="remenber" name="remenber" value="remenber">
+                                        <label for="remenber"> 记住我?</label>
+                                    </div>
+                                    <div class="text-center mt-4 font-weight-light">
+                                        没有账号? <a href="/toRegister" class="text-primary">注册</a>
+                                    </div>
+                                </div>
+                                <div class="form-row button-login">
+                                    <button class="btn btn-login" id="login"> 登录 <span
+                                            class="fas fa-arrow-right"></span></button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
+<script>
+
+    $("#account").val($.cookie("account"))
+    $("#pwd").val($.cookie("pwd"))
+
+
+    $("#login").click(function (){
+        let isChecked = $("#remenber").is(":checked");
+        if(isChecked) {
+            $.cookie("account", $("#account").val(), {expires: 30});
+            $.cookie("pwd", $("#pwd").val(), {expires: 30});
+        }
+
+        $.ajax(
+            {
+                url:"/login",
+                method:"post",
+                data:$("#myForm").serialize(),
+                dataType:"text"
+                ,
+                success:function (resp){
+                    if(resp==="success"){
+                        alert("登录成功")
+                        location.replace("/function")
+                    }
+                    else if(resp==="error1"){
+                        $("#msg").text("用户未注册")
+
+                    }
+                    else {
+                        $("#msg").text("密码错误")
+                    }
+                },
+                error:function (){
+                    $("#msg").text("系统出错")
+                }
+            }
+        )
+    })
+</script>

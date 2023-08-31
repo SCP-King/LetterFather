@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://unpkg.com/axios/dist/axios.js"></script>
+    <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <title>Title</title>
+</head>
+<body>
+<div class="container  h-100 w-100">
+    <div class="row content m-5">
+        <button type="button" class="btn btn-outline-primary btn-lg btn-block" id="my_btn">按钮</button>
+    </div>
+    <div class="alert alert-warning" role="alert">
+        A simple warning alert—check it out!
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $("#my_btn").click(function (){
+        axios.request({
+            method:"get",
+            url:"http://localhost:3000/scp"
+            // ,data:{
+            //     "level":"safe"
+            // }
+        }).then(response=>{console.log(response)})
+    })
+</script>

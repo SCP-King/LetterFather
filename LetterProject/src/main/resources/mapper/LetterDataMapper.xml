@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.letterproject.dao.LetterDataDao">
+    <select id="browseLetterStartNum" resultType="com.example.letterproject.pojo.LetterStartNum">
+        select * from letter_start_num
+    </select>
+    <select id="browseLetterEndNum" resultType="com.example.letterproject.pojo.LetterEndNum">
+        select * from letter_end_num
+    </select>
+    <select id="browseLetterType" resultType="com.example.letterproject.pojo.LetterType">
+        select * from letter_type
+    </select>
+    <select id="browseLetterToad" resultType="com.example.letterproject.pojo.LetterToad">
+        select * from letter_toad
+    </select>
+    <select id="browseLetterOrganization" resultType="com.example.letterproject.pojo.LetterOrganization">
+        select * from letter_organization
+    </select>
+    <update id="init">
+
+        delete from letter_start_num;
+        delete from letter_end_num;
+        delete from letter_toad;
+        delete from letter_type;
+        delete from letter_organization;
+        create table if not exists `letter_start_num` (
+        `year` int(11) NOT NULL,
+        `month` int(11) NOT NULL,
+        `letter_num` bigint(20) NOT NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+        create table if not exists `letter_end_num` (
+        `year` int(11) NOT NULL,
+        `month` int(11) NOT NULL,
+        `letter_num` bigint(20) NOT NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+        create table if not exists `letter_toad` (
+        `toad` int(11) NOT NULL,
+        `toad_num` bigint(20) NOT NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+        create table if not exists `letter_type` (
+        `type` varchar(30) NOT NULL,
+        `letter_num` bigint(20) NOT NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+        create table if not exists `letter_organization` (
+        `organization` varchar(20) NOT NULL,
+        `letter_num` bigint(20) NOT NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    </update>
+</mapper>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>修改密码</title>
+  <link rel="stylesheet" href="/html_css_js_2/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="/html_css_js_2/vendors/base/vendor.bundle.base.css">
+  <link rel="stylesheet" href="/html_css_js_2/css/style.css">
+  <link rel="shortcut icon" href="/html_css_js_2/images/school_logo.jfif" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+<div class="container-scroller">
+  <div class="container-fluid page-body-wrapper full-page-wrapper">
+    <div class="content-wrapper d-flex align-items-center auth px-0">
+      <div class="row w-100 mx-0">
+        <div class="col-lg-4 mx-auto">
+          <div  id="msg">
+          </div>
+          <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+            <form class="pt-3"   action="##" onsubmit="return false" method="post" id="myForm">
+              <div class="form-group">
+                <input type="text" class="form-control form-control-lg" id="account" name="account" required="required" placeholder="账号">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control form-control-lg" id="password" name="password" required="required" placeholder="旧密码">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control form-control-lg" id="pwd" name="pwd" required="required" placeholder="新密码">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control form-control-lg" id="newPwd" name="newPwd" required="required"   placeholder="确认新密码">
+              </div>
+              <div class="mt-3">
+                <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"  id="change">修改密码</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+<script>
+
+
+
+
+  $("#change").click(
+          function (){
+            if($("#pwd").val()!==$("#newPwd").val()){
+              $("#msg").text("新旧密码不一致").css("color","red")
+              return;
+            }
+            $.ajax(
+                    {
+                      url:"/reset",
+                      method:"post",
+                      data:$("#myForm").serialize(),
+                      success:function (resp){
+                        if(resp==="success"){
+                          $("#msg").text("修改成功").css("color","green")
+                        }
+                        else {
+                          $("#msg").text("修改失败").css("color","red")
+                        }
+                      },
+                      error:function (){
+                        $("#msg").text("系统错误").css("color","red")
+                      }
+                    }
+            )
+
+          }
+
+  )
+
+
+</script>

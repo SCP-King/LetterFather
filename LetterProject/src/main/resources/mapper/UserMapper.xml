@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.letterproject.dao.UserDao">
+    <select id="login" parameterType="com.example.letterproject.pojo.User" resultType="com.example.letterproject.pojo.User">
+        select  * from user where account=#{account}
+    </select>
+    <insert id="register" parameterType="com.example.letterproject.pojo.User">
+        insert ignore into user values(#{account},#{password})
+    </insert>
+    <update id="resetPwd">
+        update user set password=#{pwd} where account=#{account} and password=#{password}
+    </update>
+
+</mapper>

@@ -1,0 +1,48 @@
+{
+  "posts": [
+    {
+      "id": 8,
+      "name": "axios",
+      "age": 100
+    },
+    {
+      "id": 1,
+      "name": "axios",
+      "age": 100
+    },
+    {
+      "id": 2,
+      "name": "axios",
+      "age": 100
+    },
+    {
+      "name": "ajax",
+      "age": 100,
+      "id": 9
+    },
+    {
+      "name": "ajax",
+      "age": 100,
+      "id": 10
+    },
+    {
+      "name": "ajax",
+      "age": 100,
+      "id": 11
+    }
+  ],
+  "scp": [
+    {
+      "id": 49,
+      "level": "safe"
+    },
+    {
+      "level": "safe",
+      "id": 50
+    },
+    {
+      "level": "safe",
+      "id": 51
+    }
+  ]
+}
